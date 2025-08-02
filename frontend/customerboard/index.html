@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MentoriAI</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./components/include.js"></script>
+
+</head>
+<body class="relative min-h-screen pb-20">
+
+  <!-- Header -->
+  <div data-include="./components/header.html"></div>
+
+<!-- Ana Sayfa -->
+<main class="min-h-screen bg-[#FFF5F3] px-6 py-12 text-gray-800 flex flex-col items-center">
+
+  <!-- Hero Section -->
+  <section class="text-center max-w-3xl mb-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-[#E84230] mb-4">MentoriAI</h1>
+    <p class="text-lg md:text-xl mb-6">
+      Günlük hedeflerini planla, odaklan ve her gün daha motive bir şekilde ilerle!  
+      Mentoriá, senin kişisel yol arkadaşın.
+    </p>
+    <a href="./login.html" class="inline-block bg-[#E84230] text-white text-lg font-semibold px-8 py-3 rounded-full hover:bg-[#c53623] transition">
+      Hemen Giriş Yap ve Planlamaya Başla
+    </a>
+  </section>
+
+  <!-- Özellikler Bölümü -->
+  <section class="grid md:grid-cols-3 gap-6 max-w-5xl w-full">
+    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+      <h3 class="text-xl font-semibold text-[#E84230] mb-2">📝 Günlük Planlama</h3>
+      <p>Kendine özel görevler belirle, görevlerini sırala ve ilerlemeni takip et.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+      <h3 class="text-xl font-semibold text-[#E84230] mb-2">🤖 Akıllı Chatbot</h3>
+      <p>Mentoriá ile konuş, destek al ve moralini yüksek tut.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+      <h3 class="text-xl font-semibold text-[#E84230] mb-2">⏰ Zaman Yönetimi</h3>
+      <p>Odaklanmak için zamanlayıcıyı kullan, molalarını verimli geçir.</p>
+    </div>
+  </section>
+
+</main>
+
+
+  <!-- Footer -->
+  <div data-include="./components/footer.html"></div>
+
+</body>
+</html>
+

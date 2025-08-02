@@ -1,0 +1,35 @@
+<!-- Navbar -->
+<nav class="bg-white shadow px-6 py-4 flex justify-between items-center z-20 relative">
+  <!-- Logo -->
+  <a href="./dashboard.html" class="text-2xl font-bold text-[#E84230]">MentoriAI</a>
+
+  <!-- Menü ve Profil -->
+  <div class="flex items-center space-x-8">
+    <!-- Sayfa Linkleri -->
+    <ul class="flex space-x-6 items-center text-gray-700 font-medium">
+      <li><a href="mentoria.html" class="hover:text-[#E84230] transition">Mentoriá</a></li>
+      <li><a href="planning.html" class="hover:text-[#E84230] transition">Planlama</a></li>
+      <li><a href="diary.html" class="hover:text-[#E84230] transition">Günlük</a></li>
+      <li><a href="visionBoard.html" class="hover:text-[#E84230] transition">Vizyon Panosu</a></li>
+      <li><a href="progress.html" class="hover:text-[#E84230] transition">Gelişim</a></li>
+      <li><a href="calendar.html" class="hover:text-[#E84230] transition">Takvim</a></li>
+      <li><a href="about.html" class="hover:text-[#E84230] transition">Hakkında</a></li>
+    </ul>
+
+    <!-- Profil Dropdown -->
+    <div class="relative">
+      <button id="profileBtn" class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg hover:bg-gray-100">
+        <img src="images/image.png" alt="profil" class="w-8 h-8 rounded-full object-cover border border-gray-300" />
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <!-- Açılır Menü -->
+      <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-md z-10">
+        <a id="profileBtn" href="/frontend/dashboard/profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profilim</a>
+        <a href="/frontend/customerboard/index.html" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-100">Çıkış Yap</a>
+      </div>
+    </div>
+  </div>
+</nav>

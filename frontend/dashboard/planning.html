@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakkında - MentoriAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="./components/include.js"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <div data-include="components/header.html"></div>
+
+  <!-- Planlama Sayfası Sekmeleri -->
+<div class="flex justify-start space-x-4 py-4 border-gray-300 mb-6 pl-4 flex-wrap">
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="weekly">Haftalık</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="monthly">Aylık</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="yearly">Yıllık</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="daily">Günlük</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="custom">Özel</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="budget">Bütçe</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="maintenance">Bakım</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="career">Kariyer</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="health">Sağlık</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="education">Eğitim</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="activities">Aktiviteler</button>
+  <button class="tab-btn px-4 py-2 rounded-md text-gray-700 hover:bg-[#E84230] hover:text-white transition font-semibold" data-tab="goals">Hedefler</button>
+</div>
+
+<!-- Sekmeye Göre Değişen İçerik Alanları -->
+<div id="tab-content" class="max-w-4xl mx-auto">
+  <div class="tab-page" id="weekly">
+    <div class="text-left">Haftalık planlama içeriği buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="monthly">
+    <div class="text-left">Aylık planlama içeriği buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="yearly">
+    <div class="text-left">Yıllık hedefler içeriği buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="daily">
+    <div class="text-left">
+        <div class="max-w-2xl bg-white border border-gray-300 rounded-lg shadow p-6 space-y-4">
+  <h2 class="text-xl font-semibold text-[#E84230] text-left mb-2">Günlük Planlama</h2>
+
+  <!-- Görev Ekleme Alanı -->
+  <form id="dailyTaskForm" class="flex gap-2">
+    <input type="text" id="taskInput" placeholder="Yeni görev (örn. 09:00 Spor yap)" 
+           class="flex-grow border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-[#E84230]" required />
+    <button type="submit" class="bg-[#E84230] text-white px-4 py-2 rounded hover:bg-[#c53623] transition">Ekle</button>
+  </form>
+
+  <!-- Görev Listesi -->
+  <ul id="taskList" class="space-y-2">
+    <!-- Dinamik görevler buraya eklenecek -->
+    <!-- Örnek -->
+    <!--
+    <li class="flex items-center justify-between bg-gray-50 p-3 rounded border border-gray-200">
+      <span>📝 10:00 Ders çalış</span>
+      <button class="text-green-600 hover:text-green-800">Tamamlandı</button>
+    </li>
+    -->
+  </ul>
+</div>
+
+</div>
+  </div>
+
+  <div class="tab-page hidden" id="custom">
+    <div class="text-left">Kişiselleştirilmiş planlar için içerik buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="budget">
+    <div class="text-left">Bütçe ile ilgili içerik buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="maintenance">
+    <div class="text-left">Bakım ile ilgili içerik buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="career">
+    <div class="text-left">Kariyer ile ilgili içerik buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="health">
+    <div class="text-left">Sağlık ile ilgili içerik buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="education">
+    <div class="text-left">Eğitim ile ilgili içerik buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="activities">
+    <div class="text-left">Aktiviteler ile ilgili içerik buraya gelecek.</div>
+  </div>
+  <div class="tab-page hidden" id="goals">
+      <div class="text-left">Hedefler ile ilgili içerik buraya gelecek.</div>
+   </div>
+
+</div>
+
+<!-- Yıldızlı Mentoriá Butonu -->
+<div id="starButton" class="fixed bottom-4 right-4 z-50 group">
+  <button id="openModalBtn" class="bg-yellow-100 border-2 border-yellow-400 text-yellow-500 p-4 rounded-full shadow-lg hover:bg-yellow-200 transition text-2xl">
+    ⭐
+  </button>
+  <div class="absolute bottom-full mb-2 hidden group-hover:block bg-yellow-100 text-yellow-700 text-sm rounded px-2 py-1 shadow-lg whitespace-nowrap">
+    Plan üret
+  </div>
+</div>
+
+<!-- Modal Arka Plan -->
+<div id="planModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+  <!-- Modal İçerik -->
+  <div class="bg-white rounded-lg p-6 max-w-lg w-full relative">
+    <button id="closeModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl font-bold">&times;</button>
+    <h2 class="text-2xl font-semibold mb-4 text-[#E84230]">Günlük Plan Oluştur</h2>
+
+    <form id="planForm" class="space-y-4">
+      <label class="block">
+        Gün özeti:
+        <textarea id="summaryInput" rows="4" placeholder="Bugününüzü kısa özetleyin..." 
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-[#E84230] resize-none"></textarea>
+      </label>
+
+      <label class="block">
+        Plan Türü:
+        <select id="planType" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-[#E84230]">
+          <option value="daily">Günlük</option>
+          <option value="weekly">Haftalık</option>
+          <option value="monthly">Aylık</option>
+        </select>
+      </label>
+
+      <button type="submit" class="bg-[#E84230] text-white rounded px-4 py-2 hover:bg-[#c53623] transition font-semibold w-full">
+        Plan Oluştur
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const openModalBtn = document.getElementById("openModalBtn");
+  const planModal = document.getElementById("planModal");
+  const closeModalBtn = document.getElementById("closeModalBtn");
+  const planForm = document.getElementById("planForm");
+
+  // Modal açma
+  openModalBtn.addEventListener("click", () => {
+    planModal.classList.remove("hidden");
+    planModal.classList.add("flex");
+  });
+
+  // Modal kapatma
+  closeModalBtn.addEventListener("click", () => {
+    planModal.classList.add("hidden");
+    planModal.classList.remove("flex");
+  });
+
+  // Modal dışına tıklayınca kapatma
+  planModal.addEventListener("click", (e) => {
+    if(e.target === planModal) {
+      planModal.classList.add("hidden");
+      planModal.classList.remove("flex");
+    }
+  });
+
+  // Form submit işlemi
+  planForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const summary = document.getElementById("summaryInput").value.trim();
+    const planType = document.getElementById("planType").value;
+
+    if(!summary) {
+      alert("Lütfen gün özetinizi giriniz.");
+      return;
+    }
+
+    // Burada yapay zeka API çağrısı yapılacak (örnek placeholder)
+    // Örnek: OpenAI çağrısı veya backend ile iletişim
+    // const planResult = await callAI(summary, planType);
+
+    // Şimdilik sahte plan
+    const planResult = `Oluşturulan ${planType} plan: Gün özetinizden yola çıkarak ... (örnek çıktı)`;
+
+    // Planı sayfadaki ilgili tab içerisine ekle
+    // Örnek: Günlük tabı için
+    const dailyTab = document.querySelector("#tab-content #daily");
+    if(dailyTab) {
+      dailyTab.innerHTML = `<h3 class="text-xl font-semibold text-[#E84230] mb-2">Yapay Zeka Planı</h3><p>${planResult}</p>`;
+    }
+
+    // Modalı kapat
+    planModal.classList.add("hidden");
+    planModal.classList.remove("flex");
+
+    // Formu resetle
+    planForm.reset();
+  });
+</script>
+
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const pages = document.querySelectorAll('.tab-page');
+
+        tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-tab');
+            
+            // Tüm butonlardan aktif stili kaldır
+            tabs.forEach(t => t.classList.remove('bg-[#E84230]', 'text-white'));
+            // Tıklanana aktif stil ver
+            tab.classList.add('bg-[#E84230]', 'text-white');
+            
+            // Tüm sayfaları gizle
+            pages.forEach(p => p.classList.add('hidden'));
+            // Hedef sayfayı göster
+            document.getElementById(target).classList.remove('hidden');
+        });
+        });
+
+        // Sayfa açılınca ilk sekmeyi aktif yapalım
+        tabs[0].click();
+
+    </script>
+    <script>
+  const form = document.getElementById("dailyTaskForm");
+  const input = document.getElementById("taskInput");
+  const taskList = document.getElementById("taskList");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const value = input.value.trim();
+    if (!value) return;
+
+    const li = document.createElement("li");
+    li.className = "flex items-center justify-between bg-gray-50 p-3 rounded border border-gray-200";
+
+    const span = document.createElement("span");
+    span.innerText = "📝 " + value;
+    li.appendChild(span);
+
+    const doneBtn = document.createElement("button");
+    doneBtn.innerText = "Tamamlandı";
+    doneBtn.className = "text-green-600 hover:text-green-800 font-medium";
+    doneBtn.onclick = () => {
+      span.classList.add("line-through", "text-gray-400");
+      doneBtn.remove();
+    };
+    li.appendChild(doneBtn);
+
+    taskList.appendChild(li);
+    input.value = "";
+  });
+</script>
+
+
+  <!-- Footer -->
+  <div data-include="components/footer.html"></div>
+
+</body>
+</html>

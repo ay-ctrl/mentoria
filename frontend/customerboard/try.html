@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakkında - MentoriAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="./components/include.js"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <div data-include="components/header.html"></div>
+
+ <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+
+  <!-- Ay Seçici -->
+  <div class="flex justify-between items-center mb-4">
+    <button id="prevMonth" class="px-3 py-1 bg-[#E84230] text-white rounded hover:bg-[#c53623]">&lt;</button>
+    <h2 id="monthYear" class="text-xl font-semibold text-[#E84230]">Temmuz 2025</h2>
+    <button id="nextMonth" class="px-3 py-1 bg-[#E84230] text-white rounded hover:bg-[#c53623]">&gt;</button>
+  </div>
+
+  <!-- Haftanın Günleri -->
+  <div class="grid grid-cols-7 text-center font-semibold text-gray-600 mb-2">
+    <div>Pzt</div><div>Sal</div><div>Çar</div><div>Per</div><div>Cum</div><div>Cmt</div><div>Pzr</div>
+  </div>
+
+  <!-- Günler -->
+  <div id="calendarGrid" class="grid grid-cols-7 gap-1 text-center">
+    <!-- Gün kutucukları JS ile doldurulacak -->
+  </div>
+
+  <!-- Gün Detay Paneli -->
+  <div id="dayDetails" class="mt-6 p-4 border rounded bg-gray-50 hidden">
+    <h3 class="text-lg font-semibold mb-2 text-[#E84230]">Gün Detayları</h3>
+    <div id="dayInfo"></div>
+    <textarea id="dayNotes" class="w-full border border-gray-300 rounded p-2 mt-2 resize-none" placeholder="Bugün için notlarınızı yazın..."></textarea>
+    <button id="saveDayNotes" class="mt-2 px-4 py-2 bg-[#E84230] text-white rounded hover:bg-[#c53623] transition">Kaydet</button>
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <div data-include="components/footer.html"></div>
+
+</body>
+</html>

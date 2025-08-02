@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vizyon Panosu - MentoriAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- SortableJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="./components/include.js"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <div data-include="components/header.html"></div>
+
+  <!-- İçerik -->
+  <div class="max-w-7xl mx-auto p-6 flex flex-col flex-grow">
+
+    <h1 class="text-4xl font-bold text-[#E84230] mb-8 text-center">Vizyon Panon</h1>
+
+    <!-- Yeni Kart Ekleme Formu -->
+    <form id="addCardForm" class="flex gap-4 mb-6 justify-center flex-wrap">
+      <input id="titleInput" type="text" placeholder="Başlık (zorunlu)" required
+        class="border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-[#E84230] w-60" />
+      <input id="descInput" type="text" placeholder="Açıklama"
+        class="border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-[#E84230] w-96" />
+      <input id="emojiInput" type="text" maxlength="2" placeholder="Emoji (ör: 🎯)"
+        class="border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-[#E84230] w-20 text-center" />
+      <button type="submit" class="bg-[#E84230] text-white rounded px-6 py-2 hover:bg-[#c53623] transition">
+        Ekle
+      </button>
+    </form>
+
+    <!-- Vizyon Panosu Kartları -->
+    <div id="visionGrid"
+         class="grid grid-cols-3 grid-rows-3 gap-6 overflow-auto rounded-lg p-5 mx-auto shadow-lg"
+         style="
+           width: 900px;
+           height: 600px;
+           background-image: url('./pano.jpg');
+           background-repeat: no-repeat;
+           background-position: center;
+           background-size: contain;
+           margin-bottom: 100px;
+         ">
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div data-include="components/footer.html"></div>
+
+  <script>
+    const visionGrid = document.getElementById("visionGrid");
+
+    // Yerel veriyi yükle
+    const loadCards = () => {
+      const data = localStorage.getItem("visionCards");
+      return data ? JSON.parse(data) : [];
+    };
+
+    // Yerel veriyi kaydet
+    const saveCards = (cards) => {
+      localStorage.setItem("visionCards", JSON.stringify(cards));
+    };
+
+    let cards = loadCards();
+
+    // Kart oluşturma
+    const createCardElement = (card, index) => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "card bg-white border border-[#E84230] rounded-lg p-4 shadow cursor-move select-none relative flex flex-col justify-between";
+      cardDiv.setAttribute("data-index", index);
+      cardDiv.setAttribute("tabindex", "0");
+      cardDiv.style.minHeight = "140px"; // Kart yüksekliği sabit, pano uyumu için
+
+      // Emoji + Başlık (editable)
+      const titleEl = document.createElement("h3");
+      titleEl.contentEditable = "true";
+      titleEl.className = "text-lg font-bold text-[#E84230] mb-2 flex items-center gap-2";
+      titleEl.innerText = `${card.emoji ? card.emoji + " " : ""}${card.title}`;
+      cardDiv.appendChild(titleEl);
+
+      // Açıklama (editable)
+      const descEl = document.createElement("p");
+      descEl.contentEditable = "true";
+      descEl.className = "text-gray-700 flex-grow";
+      descEl.innerText = card.description;
+      cardDiv.appendChild(descEl);
+
+      // Silme butonu
+      const delBtn = document.createElement("button");
+      delBtn.innerText = "✕";
+      delBtn.title = "Sil";
+      delBtn.className = "absolute top-1 right-2 text-red-600 hover:text-red-800 font-bold text-lg";
+      delBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        cards.splice(index, 1);
+        saveCards(cards);
+        renderCards();
+      });
+      cardDiv.appendChild(delBtn);
+
+      // Değişiklikleri kaydet (blur event)
+      const saveChanges = () => {
+        const text = titleEl.innerText.trim();
+        const firstChar = text.charAt(0);
+        const isEmoji = /\p{Emoji}/u.test(firstChar);
+
+        cards[index].emoji = isEmoji ? firstChar : "";
+        cards[index].title = isEmoji ? text.slice(1).trim() : text;
+        cards[index].description = descEl.innerText.trim();
+        saveCards(cards);
+      };
+      titleEl.addEventListener("blur", saveChanges);
+      descEl.addEventListener("blur", saveChanges);
+
+      return cardDiv;
+    };
+
+    // Kartları ekranda göster
+    const renderCards = () => {
+      visionGrid.innerHTML = "";
+      cards.forEach((card, i) => {
+        visionGrid.appendChild(createCardElement(card, i));
+      });
+    };
+
+    renderCards();
+
+    // Drag & Drop ayarları
+    new Sortable(visionGrid, {
+      animation: 150,
+      onEnd: function (evt) {
+        const item = cards.splice(evt.oldIndex, 1)[0];
+        cards.splice(evt.newIndex, 0, item);
+        saveCards(cards);
+        renderCards();
+      },
+    });
+
+    // Yeni kart ekleme
+    const form = document.getElementById("addCardForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = document.getElementById("titleInput").value.trim();
+      const description = document.getElementById("descInput").value.trim();
+      const emoji = document.getElementById("emojiInput").value.trim();
+
+      if (!title) {
+        alert("Lütfen bir başlık giriniz.");
+        return;
+      }
+
+      // Eğer 9'dan fazla kart olursa uyar (isteğe bağlı)
+      if(cards.length >= 9){
+        alert("En fazla 9 kart ekleyebilirsiniz.");
+        return;
+      }
+
+      cards.push({ title, description, emoji });
+      saveCards(cards);
+      renderCards();
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
