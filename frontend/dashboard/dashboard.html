@@ -1,76 +1,91 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MentoriAI</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MentoriAI</title>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lottie -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-  <script src="./components/include.js"></script>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lottie -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="./components/include.js"></script>
+  </head>
+  <body class="relative min-h-screen pb-20">
+    <!-- Header -->
+    <div data-include="./components/header.html"></div>
 
-</head>
-<body class="relative min-h-screen pb-20">
+    <main class="p-6 bg-[#FFF5F3] min-h-screen text-gray-800">
+      <section class="mb-8">
+        <h1 class="text-3xl font-bold text-[#E84230] mb-2">Merhaba Ayşe! 👋</h1>
+        <p class="text-lg">Bugün odaklanacağın şeyleri birlikte planlayalım.</p>
+      </section>
 
-  <!-- Header -->
-  <div data-include="./components/header.html"></div>
+      <!-- Günlük Görevler -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold text-[#E84230] mb-4">
+          📋 Bugünün Görevleri
+        </h2>
+        <ul class="space-y-3">
+          <li class="flex items-center bg-white p-4 rounded-lg shadow">
+            <input
+              type="checkbox"
+              class="mr-3 w-5 h-5 text-[#E84230] focus:ring-[#E84230]"
+            />
+            <span>30 dk ders çalış</span>
+          </li>
+          <li class="flex items-center bg-white p-4 rounded-lg shadow">
+            <input
+              type="checkbox"
+              class="mr-3 w-5 h-5 text-[#E84230] focus:ring-[#E84230]"
+            />
+            <span>Yürüyüşe çık</span>
+          </li>
+        </ul>
+      </section>
 
-<main class="p-6 bg-[#FFF5F3] min-h-screen text-gray-800">
-  <section class="mb-8">
-    <h1 class="text-3xl font-bold text-[#E84230] mb-2">Merhaba Ayşe! 👋</h1>
-    <p class="text-lg">Bugün odaklanacağın şeyleri birlikte planlayalım.</p>
-  </section>
+      <!-- Zamanlayıcı -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold text-[#E84230] mb-4">
+          ⏳ Odaklanma Zamanı
+        </h2>
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <p class="text-3xl font-bold mb-2">25:00</p>
+          <button
+            class="bg-[#E84230] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#c53623] transition"
+          >
+            Başlat
+          </button>
+        </div>
+      </section>
 
-  <!-- Günlük Görevler -->
-  <section class="mb-10">
-    <h2 class="text-2xl font-semibold text-[#E84230] mb-4">📋 Bugünün Görevleri</h2>
-    <ul class="space-y-3">
-      <li class="flex items-center bg-white p-4 rounded-lg shadow">
-        <input type="checkbox" class="mr-3 w-5 h-5 text-[#E84230] focus:ring-[#E84230]">
-        <span>30 dk ders çalış</span>
-      </li>
-      <li class="flex items-center bg-white p-4 rounded-lg shadow">
-        <input type="checkbox" class="mr-3 w-5 h-5 text-[#E84230] focus:ring-[#E84230]">
-        <span>Yürüyüşe çık</span>
-      </li>
-    </ul>
-  </section>
+      <!-- Chatbot -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold text-[#E84230] mb-4">
+          🤖 Mentorun Yanında
+        </h2>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <p class="mb-2">Bir sorun mu var, destek mi istiyorsun?</p>
+          <a
+            href="/chatbot.html"
+            class="text-[#E84230] font-semibold hover:underline"
+            >Chatbot ile konuş</a
+          >
+        </div>
+      </section>
 
-  <!-- Zamanlayıcı -->
-  <section class="mb-10">
-    <h2 class="text-2xl font-semibold text-[#E84230] mb-4">⏳ Odaklanma Zamanı</h2>
-    <div class="bg-white p-6 rounded-lg shadow text-center">
-      <p class="text-3xl font-bold mb-2">25:00</p>
-      <button class="bg-[#E84230] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#c53623] transition">
-        Başlat
-      </button>
-    </div>
-  </section>
+      <!-- Görev Ekle -->
+      <div class="text-center mt-10">
+        <a
+          href="/add-task.html"
+          class="inline-block bg-[#E84230] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#c53623] transition"
+        >
+          + Yeni Görev Ekle
+        </a>
+      </div>
+    </main>
 
-  <!-- Chatbot -->
-  <section class="mb-10">
-    <h2 class="text-2xl font-semibold text-[#E84230] mb-4">🤖 Mentorun Yanında</h2>
-    <div class="bg-white p-4 rounded-lg shadow">
-      <p class="mb-2">Bir sorun mu var, destek mi istiyorsun?</p>
-      <a href="/chatbot.html" class="text-[#E84230] font-semibold hover:underline">Chatbot ile konuş</a>
-    </div>
-  </section>
-
-  <!-- Görev Ekle -->
-  <div class="text-center mt-10">
-    <a href="/add-task.html" class="inline-block bg-[#E84230] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#c53623] transition">
-      + Yeni Görev Ekle
-    </a>
-  </div>
-</main>
-
-
-
-  <!-- Footer -->
-  <div data-include="./components/footer.html"></div>
-
-</body>
+    <!-- Footer -->
+    <div data-include="./components/footer.html"></div>
+  </body>
 </html>
-

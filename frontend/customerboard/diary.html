@@ -1,69 +1,91 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakkında - MentoriAI</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css" />
-  <script src="./components/include.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hakkında - MentoriAI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./components/include.js"></script>
     <script src="diary.js"></script>
-</head>
-<body class="bg-white text-gray-800">
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- Header -->
+    <div data-include="components/header.html"></div>
 
-  <!-- Header -->
-  <div data-include="components/header.html"></div>
+    <!-- İçerik -->
+    <div class="max-w-6xl mx-auto mt-12 px-4 flex flex-col md:flex-row gap-6">
+      <!-- 📚 Eski Notları Görüntüleme Kutusu -->
+      <div
+        class="w-full md:w-1/2 bg-white border-2 border-[#E84230] rounded-lg p-6 shadow"
+      >
+        <h2 class="text-2xl font-semibold text-[#E84230] mb-4 text-center">
+          Geçmiş Notların
+        </h2>
 
-  <!-- İçerik -->
-   <div class="max-w-6xl mx-auto mt-12 px-4 flex flex-col md:flex-row gap-6">
+        <div id="history-area" class="space-y-4 max-h-[400px] overflow-y-auto">
+          <!-- JavaScript ile doldurulacak -->
+          <div class="border border-gray-200 p-4 rounded bg-gray-50">
+            <p class="text-sm text-gray-500">27.07.2025</p>
+            <p class="font-semibold">Verimli Bir Gün!</p>
+            <p class="text-sm mt-1">
+              Bugün projeye güzel başladım. MentoriAI'nin arayüzü tamamlandı ve
+              ilk modül geliştirildi. Motivasyonum oldukça yüksekti. Yarın hedef
+              planlama kısmına geçeceğim.
+            </p>
+          </div>
+        </div>
 
-    <!-- 📚 Eski Notları Görüntüleme Kutusu -->
-  <div class="w-full md:w-1/2 bg-white border-2 border-[#E84230] rounded-lg p-6 shadow">
-    <h2 class="text-2xl font-semibold text-[#E84230] mb-4 text-center">Geçmiş Notların</h2>
+        <!-- Sayfalandırma -->
+        <div class="flex justify-center mt-4 space-x-2">
+          <button
+            onclick="prevPage()"
+            class="px-3 py-1 border rounded hover:bg-gray-100"
+          >
+            ←
+          </button>
+          <span id="page-indicator" class="px-2 text-sm text-gray-600"></span>
+          <button
+            onclick="nextPage()"
+            class="px-3 py-1 border rounded hover:bg-gray-100"
+          >
+            →
+          </button>
+        </div>
+      </div>
 
-    <div id="history-area" class="space-y-4 max-h-[400px] overflow-y-auto">
-      <!-- JavaScript ile doldurulacak -->
-       <div class="border border-gray-200 p-4 rounded bg-gray-50">
-      <p class="text-sm text-gray-500">27.07.2025</p>
-      <p class="font-semibold">Verimli Bir Gün!</p>
-      <p class="text-sm mt-1">
-        Bugün projeye güzel başladım. MentoriAI'nin arayüzü tamamlandı ve ilk modül geliştirildi.  
-        Motivasyonum oldukça yüksekti. Yarın hedef planlama kısmına geçeceğim.
-      </p>
+      <!-- 📝 Yeni Günlük Girişi Kutusu -->
+      <div
+        class="w-full md:w-1/2 bg-white border-2 border-[#E84230] rounded-lg p-6 shadow"
+      >
+        <h2 class="text-2xl font-semibold text-[#E84230] mb-4 text-center">
+          Bugün Ne Hissettin?
+        </h2>
+
+        <input
+          id="entry-title"
+          type="text"
+          placeholder="Başlık..."
+          class="w-full border px-4 py-2 mb-3 rounded focus:outline-none focus:ring-2 focus:ring-[#E84230]"
+        />
+
+        <textarea
+          id="entry-content"
+          rows="6"
+          placeholder="Bugünü anlat..."
+          class="w-full border px-4 py-2 rounded resize-none focus:outline-none focus:ring-2 focus:ring-[#E84230]"
+        ></textarea>
+
+        <button
+          onclick="saveEntry()"
+          class="mt-4 w-full bg-[#E84230] text-white py-2 rounded hover:bg-[#c53623] transition"
+        >
+          Kaydet
+        </button>
+      </div>
     </div>
-    </div>
 
-    <!-- Sayfalandırma -->
-    <div class="flex justify-center mt-4 space-x-2">
-      <button onclick="prevPage()" class="px-3 py-1 border rounded hover:bg-gray-100">←</button>
-      <span id="page-indicator" class="px-2 text-sm text-gray-600"></span>
-      <button onclick="nextPage()" class="px-3 py-1 border rounded hover:bg-gray-100">→</button>
-    </div>
-  </div>
-
-  <!-- 📝 Yeni Günlük Girişi Kutusu -->
-  <div class="w-full md:w-1/2 bg-white border-2 border-[#E84230] rounded-lg p-6 shadow">
-    <h2 class="text-2xl font-semibold text-[#E84230] mb-4 text-center">Bugün Ne Hissettin?</h2>
-
-    <input id="entry-title" type="text" placeholder="Başlık..." 
-           class="w-full border px-4 py-2 mb-3 rounded focus:outline-none focus:ring-2 focus:ring-[#E84230]" />
-
-    <textarea id="entry-content" rows="6" placeholder="Bugünü anlat..." 
-              class="w-full border px-4 py-2 rounded resize-none focus:outline-none focus:ring-2 focus:ring-[#E84230]"></textarea>
-
-    <button onclick="saveEntry()"
-            class="mt-4 w-full bg-[#E84230] text-white py-2 rounded hover:bg-[#c53623] transition">
-      Kaydet
-    </button>
-  </div>
-
-  
-</div>
-
-
-
-  <!-- Footer -->
-  <div data-include="components/footer.html"></div>
-
-</body>
+    <!-- Footer -->
+    <div data-include="components/footer.html"></div>
+  </body>
 </html>
