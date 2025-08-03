@@ -98,30 +98,8 @@ app.post('/api/mentoria', async (req, res) => {
   }
 });
 
-// İstersen eski /api/gemini endpointini de tutabilirsin:
-app.post('/api/gemini', async (req, res) => {
-  try {
-    const userInput = req.body.prompt;
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: userInput }] }],
-        }),
-      }
-    );
-    const data = await response.json();
-    if (data.error) {
-      return res.status(500).json({ error: data.error.message });
-    }
-    res.json(data);
-  } catch (error) {
-    console.error('Sunucu hatası:', error);
-    res.status(500).json({ error: 'Sunucu hatası' });
-  }
-});
+app.use('/register', require('./routes/register'));
+app.use('/login', require('./routes/login'));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

@@ -68,5 +68,30 @@
 
     <!-- Footer -->
     <div data-include="components/footer.html"></div>
+
+    <script>
+      document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        const res = await fetch('http://localhost:3000/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert('Kayıt başarılı! Giriş sayfasına yönlendiriliyorsunuz.');
+          window.location.href = 'login.html';
+        } else {
+          alert(data.message || 'Kayıt başarısız.');
+        }
+      });
+    </script>
   </body>
 </html>
