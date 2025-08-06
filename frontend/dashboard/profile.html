@@ -26,17 +26,29 @@
         class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-12"
       >
         <!-- Profil Fotoğrafı -->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center relative">
           <img
+            id="profileImg"
             src="images/image.png"
             alt="Profil Fotoğrafı"
             class="w-32 h-32 rounded-full object-cover border-4 border-[#E84230] mb-4"
           />
           <button
+            id="changeAvatarBtn"
             class="px-4 py-2 bg-[#E84230] text-white rounded hover:bg-[#c53623] transition"
+            type="button"
           >
             Fotoğrafı Değiştir
           </button>
+
+          <!-- Avatar Seçim Paneli (başta gizli) -->
+          <div
+            id="avatarSelector"
+            class="absolute top-full mt-2 bg-white border border-gray-300 rounded shadow p-4 flex space-x-4 overflow-x-auto w-[220px]"
+            style="display: none"
+          >
+            <!-- JS ile avatar img’leri buraya gelecek -->
+          </div>
         </div>
 
         <!-- Kullanıcı Bilgileri -->

@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
   about: { type: String, default: '' }, // İsteğe bağlı hakkımda alanı
+  avatar: { type: String, default: 'image.png' }, // default avatar dosya adı
   createdAt: { type: Date, default: Date.now },
 });
 

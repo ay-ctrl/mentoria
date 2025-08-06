@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       nameInput.value = user.name || '';
       emailInput.value = user.email || '';
       aboutInput.value = user.about || '';
+      if (user.avatar) {
+        profileImg.src = `images/${user.avatar}`;
+      } else {
+        profileImg.src = 'images/image.png'; // varsayılan
+      }
     } catch (error) {
       console.error(error);
       alert('Profil bilgisi yüklenirken hata oluştu');
@@ -43,6 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           name: nameInput.value,
           email: emailInput.value,
           about: aboutInput.value,
+          avatar: window.avatarSelector.getSelectedAvatar(), // BURAYA EKLEDİK
         }),
       });
 
@@ -58,4 +64,63 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   await loadProfile();
+});
+
+function setupAvatarSelector() {
+  const changeAvatarBtn = document.getElementById('changeAvatarBtn');
+  const avatarSelector = document.getElementById('avatarSelector');
+  const profileImg = document.getElementById('profileImg');
+
+  // Avatar dosyaları
+  const avatars = [
+    'avatar1.png',
+    'avatar2.png',
+    'avatar3.png',
+    'avatar4.png',
+    'image.png', // mevcut varsayılan
+  ];
+
+  let selectedAvatar = profileImg.src.split('/').pop() || 'image.png';
+
+  // Avatar listesini oluştur
+  function renderAvatars(selected) {
+    avatarSelector.innerHTML = '';
+    avatars.forEach((avatar) => {
+      const img = document.createElement('img');
+      img.src = `images/${avatar}`;
+      img.alt = avatar;
+      img.className = `w-16 h-16 rounded-full cursor-pointer border-4 ${
+        avatar === selected ? 'border-[#E84230]' : 'border-transparent'
+      }`;
+      img.addEventListener('click', () => {
+        selectedAvatar = avatar;
+        profileImg.src = `images/${selectedAvatar}`; // seçilen avatarı profil resmine yansıt
+        renderAvatars(selectedAvatar);
+      });
+      avatarSelector.appendChild(img);
+    });
+  }
+
+  // Butona tıklayınca avatar seçici göster/gizle
+  changeAvatarBtn.addEventListener('click', () => {
+    if (
+      avatarSelector.style.display === 'none' ||
+      !avatarSelector.style.display
+    ) {
+      avatarSelector.style.display = 'flex';
+      renderAvatars(selectedAvatar);
+    } else {
+      avatarSelector.style.display = 'none';
+    }
+  });
+
+  // Seçilen avatarı dışarıya vermek için getter fonksiyon
+  return {
+    getSelectedAvatar: () => selectedAvatar,
+  };
+}
+
+// Sayfa yüklendiğinde çağır ve sonucu sakla:
+document.addEventListener('DOMContentLoaded', () => {
+  window.avatarSelector = setupAvatarSelector();
 });
