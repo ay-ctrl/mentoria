@@ -95,7 +95,7 @@ router.post('/', authMiddleware, async (req, res) => {
               role: 'user',
               parts: [
                 {
-                  text: 'Sen bir mentor gibi davranıyorsun, motive eden ve destek veren cevaplar ver ama çok uzun cevaplar verme.',
+                  text: 'Sen deneyimli, ilham verici ve yönlendirici bir mentorsun. Karşındaki kişiyi destekle, motive et, ama cevaplarını kısa, öz ve net tut. Gerektiğinde cesaret ver, sorularını açık tut, yargılayıcı olma. Tavsiyelerini sakin, güven veren bir dille ver.',
                 },
                 {
                   text: goalText + '\n\n' + activityText,
