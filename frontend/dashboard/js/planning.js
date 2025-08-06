@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     goals: './js/tabs/goals.js',
     weekly: './js/tabs/weekly.js',
     monthly: './js/tabs/monthly.js',
+    daily: './js/tabs/daily.js',
     // diğer tablar ve js dosyaları...
   };
 
