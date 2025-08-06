@@ -131,6 +131,53 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Sayfa yüklenince sohbet geçmişini yükle
   loadChatHistory();
 
+  // 4. Sohbeti silme fonksiyonu
+  async function clearChatHistory() {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('Kullanıcı oturumu yok.');
+
+      const res = await fetch('http://localhost:3000/mentoria/history', {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || 'Sohbet silinemedi');
+      }
+
+      // Arayüzü temizle ve varsayılan mesajı ekle
+      chatBox.innerHTML = `
+        <div class="flex">
+          <div class="bg-gray-100 p-3 rounded-md max-w-md">
+            <p class="text-sm">
+              <span class="font-semibold text-[#E84230]">Mentoriá:</span>
+            </p>
+            <p class="text-sm mt-1 text-gray-800">
+              Merhaba! Ben Mentoriá. Sana motivasyon ve destek vermek için buradayım. Yazmak istediğin bir şey varsa başlayalım!
+            </p>
+          </div>
+        </div>
+      `;
+    } catch (error) {
+      console.error('Sohbet silinirken hata:', error);
+      chatBox.innerHTML += `<div class="text-red-500 mb-4">Sohbet silinemedi: ${error.message}</div>`;
+    }
+  }
+
+  // 5. Buton olay dinleyicisi
+  const clearChatBtn = document.getElementById('clearChat');
+  if (clearChatBtn) {
+    clearChatBtn.addEventListener('click', () => {
+      if (confirm('Tüm sohbet geçmişini silmek istediğine emin misin?')) {
+        clearChatHistory();
+      }
+    });
+  }
+
   // Eventler
   sendButton.addEventListener('click', () => {
     sendToMentoria();

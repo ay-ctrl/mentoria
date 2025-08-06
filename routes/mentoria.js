@@ -20,6 +20,20 @@ router.get('/history', authMiddleware, async (req, res) => {
   }
 });
 
+// Sohbet geçmişini silme (kullanıcının tüm mesajlarını siler)
+router.delete('/history', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    await Message.deleteMany({ userId });
+
+    res.status(200).json({ message: 'Sohbet geçmişi başarıyla silindi.' });
+  } catch (error) {
+    console.error('Sohbet geçmişi silinirken hata:', error);
+    res.status(500).json({ error: 'Sohbet geçmişi silinemedi.' });
+  }
+});
+
 router.post('/', authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id; // Token'dan gelen userId
