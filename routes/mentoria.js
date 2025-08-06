@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Message = require('../models/message');
+const Goal = require('../models/goal');
+const Activity = require('../models/activity');
 const authMiddleware = require('../middleware/auth'); // JWT doğrulama middleware
 
 const API_KEY = process.env.GEMINI_KEY;
 
-// authMiddleware ile kullanıcı doğrulaması yapıyoruz
 router.post('/', authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id; // Token'dan gelen userId
@@ -15,7 +16,29 @@ router.post('/', authMiddleware, async (req, res) => {
       return res.status(400).json({ error: 'Mesaj boş olamaz' });
     }
 
-    // Kullanıcıya ait son 10 mesajı al (en eski önce olacak şekilde)
+    // Kullanıcının hedeflerini al
+    const goals = await Goal.find({ user: userId, isArchived: false })
+      .sort({ createdAt: -1 })
+      .limit(3)
+      .lean();
+
+    // Kullanıcının aktivitelerini al
+    const activities = await Activity.find({ userId })
+      .sort({ createdAt: -1 })
+      .limit(3)
+      .lean();
+
+    const goalText = goals.length
+      ? 'Kullanıcının hedefleri:\n' +
+        goals.map((g, i) => `${i + 1}. ${g.name}`).join('\n')
+      : 'Kullanıcının şu anda belirlenmiş bir hedefi yok.';
+
+    const activityText = activities.length
+      ? 'Kullanıcının son aktiviteleri:\n' +
+        activities.map((a, i) => `${i + 1}. ${a.name}`).join('\n')
+      : 'Kullanıcının kaydedilmiş bir aktivitesi yok.';
+
+    // Kullanıcıya ait son 6 mesajı al (en eski önce olacak şekilde)
     const history = await Message.find({ userId })
       .sort({ createdAt: -1 })
       .limit(6)
@@ -46,6 +69,9 @@ router.post('/', authMiddleware, async (req, res) => {
               parts: [
                 {
                   text: 'Sen bir mentor gibi davranıyorsun, motive eden ve destek veren cevaplar ver ama çok uzun cevaplar verme.',
+                },
+                {
+                  text: goalText + '\n\n' + activityText,
                 },
               ],
             },
