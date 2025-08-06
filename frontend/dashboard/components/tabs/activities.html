@@ -1,16 +1,40 @@
-<div id="activities" class="flex flex-col md:flex-row gap-6 p-4">
+<div id="activities" class="flex h-screen p-4 gap-6">
   <!-- Sol: Aktivite Listesi -->
-  <div class="flex-1">
-    <h2 class="text-xl font-semibold text-[#E84230] mb-4">Aktivitelerim</h2>
-    <div id="activity-list" class="flex flex-col gap-4"></div>
+  <div
+    class="flex-shrink-0 border rounded-lg shadow bg-white overflow-hidden"
+    style="width: 720px; height: 420px; margin-right: 0;"
+  >
+    <h2 class="text-xl font-semibold text-[#E84230] p-4 border-b">
+      Aktivitelerim
+    </h2>
+    <div
+      id="activity-list"
+      class="overflow-y-auto p-4 space-y-4"
+      style="height: calc(420px - 56px); scrollbar-width: thin; scrollbar-color: #e84230 transparent;"
+    >
+      <!-- Aktivite kartları burada olacak -->
+    </div>
   </div>
 
+
   <!-- Sağ: Ekleme Paneli -->
-  <div class="w-full md:w-1/3 bg-white rounded-lg shadow p-4 border">
-    <h3 class="text-lg font-bold mb-3 text-[#E84230]">Yeni Aktivite</h3>
-    <form id="activity-form" class="space-y-4">
-      <!-- Aktivite Adı -->
-      <div>
+<div
+  class="w-[26rem] flex-shrink-0 bg-white rounded-lg shadow border flex flex-col"
+  style="height: 420px;"
+>
+  <!-- Üst Header -->
+  <div class="p-4 border-b font-bold text-[#E84230] text-lg flex-shrink-0">
+    Yeni Aktivite
+  </div>
+
+  <!-- Form -->
+  <form
+    id="activity-form"
+    class="flex flex-col p-4 flex-grow"
+  >
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <!-- Aktivite Adı (3 sütun genişliğinde) -->
+      <div class="sm:col-span-3">
         <label class="block text-sm font-medium">Aktivite Adı</label>
         <input
           type="text"
@@ -20,11 +44,9 @@
         />
       </div>
 
-      <!-- Haftada Kaç Kez -->
+      <!-- Haftalık Sıklık -->
       <div>
-        <label class="block text-sm font-medium"
-          >Haftalık Sıklık (kaç kez)</label
-        >
+        <label class="block text-sm font-medium">Haftalık Sıklık (kaç kez)</label>
         <input
           type="number"
           id="activity-frequency"
@@ -35,9 +57,7 @@
 
       <!-- Zaman Aralığı -->
       <div>
-        <label class="block text-sm font-medium"
-          >Zaman Aralığı (Opsiyonel)</label
-        >
+        <label class="block text-sm font-medium">Zaman Aralığı (Opsiyonel)</label>
         <input
           type="text"
           id="activity-time-range"
@@ -46,11 +66,9 @@
         />
       </div>
 
-      <!-- Yapıldığında Ne Kadar Süre -->
+      <!-- Bir Seferde Yapılacak Süre -->
       <div>
-        <label class="block text-sm font-medium"
-          >Bir Seferde Yapılacak Süre</label
-        >
+        <label class="block text-sm font-medium">Bir Seferde Yapılacak Süre</label>
         <input
           type="text"
           id="activity-duration"
@@ -60,23 +78,38 @@
         />
       </div>
 
-      <!-- Açıklama -->
-      <div>
+      <!-- Açıklama (3 sütun genişliğinde) -->
+      <div class="sm:col-span-3">
         <label class="block text-sm font-medium">Açıklama (Opsiyonel)</label>
         <textarea
           id="activity-description"
           class="w-full border rounded p-2"
-          rows="3"
+          rows="2"
           placeholder="İsteğe bağlı açıklama gir..."
         ></textarea>
       </div>
+    </div>
 
-      <button
-        type="submit"
-        class="bg-[#E84230] text-white px-4 py-2 rounded w-full"
-      >
-        Ekle
-      </button>
-    </form>
+    <button
+      type="submit"
+      class="bg-[#E84230] text-white px-4 py-2 rounded w-full mt-auto"
+    >
+      Ekle
+    </button>
+  </form>
+</div>
+
+  <!-- Sağdaki boşluk için bilgilendirme kutusu -->
+  <div
+    class="w-72 flex-shrink-0 bg-[#FFF4F2] border border-[#E84230] rounded-lg shadow p-4 text-[#E84230]"
+    style="height: 420px;"
+  >
+    <h3 class="font-bold text-lg mb-2">Aktiviteler Ne İşe Yarar?</h3>
+    <p class="text-sm leading-relaxed">
+      Bu aktiviteler, otomatik plan oluşturulurken kullanılabilir veya planlama sayfalarında kişi kendi planını yaparken
+      yardımcı olur. Aktivitelerinizi kaydederek zaman yönetiminizi daha etkin hale getirebilirsiniz.
+    </p>
+  </div>
+
   </div>
 </div>

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tab adı -> js dosyası (varsa)
   const tabScriptFiles = {
     activities: './js/tabs/activities.js',
+    goals: './js/tabs/goals.js',
     weekly: './js/tabs/weekly.js',
     monthly: './js/tabs/monthly.js',
     // diğer tablar ve js dosyaları...

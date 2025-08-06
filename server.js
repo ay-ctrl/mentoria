@@ -30,6 +30,7 @@ app.use('/mentoria', require('./routes/mentoria'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
 app.use('/activities', require('./routes/tabs/activities'));
+app.use('/goals', require('./routes/tabs/goals'));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

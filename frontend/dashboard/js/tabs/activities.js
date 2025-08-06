@@ -7,6 +7,9 @@
     return;
   }
 
+  // Tab aktifken sayfa scroll'u kapat (sadece body overflow'u)
+  document.body.style.overflow = 'hidden';
+
   // Öncelikle backend’den aktivite listesini çekelim
   let activities = [];
 
