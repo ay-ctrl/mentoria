@@ -18,7 +18,7 @@ router.post('/', authMiddleware, async (req, res) => {
     // Kullanıcıya ait son 10 mesajı al (en eski önce olacak şekilde)
     const history = await Message.find({ userId })
       .sort({ createdAt: -1 })
-      .limit(10)
+      .limit(6)
       .lean();
 
     const messages = history.reverse().map((msg) => ({
@@ -45,7 +45,7 @@ router.post('/', authMiddleware, async (req, res) => {
               role: 'user',
               parts: [
                 {
-                  text: 'Sen bir mentor gibi davranıyorsun, motive eden ve destek veren cevaplar ver ama bir insan gibi kısa konuş, gereksiz uzun cevaplar verme.',
+                  text: 'Sen bir mentor gibi davranıyorsun, motive eden ve destek veren cevaplar ver ama çok uzun cevaplar verme.',
                 },
               ],
             },
