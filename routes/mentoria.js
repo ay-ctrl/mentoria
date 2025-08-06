@@ -7,6 +7,19 @@ const authMiddleware = require('../middleware/auth'); // JWT doğrulama middlewa
 
 const API_KEY = process.env.GEMINI_KEY;
 
+// Örnek: /messages/history
+router.get('/history', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const messages = await Message.find({ userId })
+      .sort({ createdAt: 1 })
+      .lean();
+    res.json(messages);
+  } catch (error) {
+    res.status(500).json({ error: 'Geçmiş mesajlar alınamadı' });
+  }
+});
+
 router.post('/', authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id; // Token'dan gelen userId
