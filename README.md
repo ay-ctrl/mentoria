@@ -5,11 +5,10 @@
 ## 🚀 Özellikler
 
 - Kullanıcı mesajlarını MongoDB'ye kaydeder
-- Son 10 mesaj üzerinden bağlamı koruyarak Gemini ile yanıt üretir
-- Lottie animasyonlu yükleniyor (typing) efekti
-- Kullanıcı mesajları sağa, Mentoriá cevapları sola hizalanır
-- Mentoriá cevap verene kadar yeni mesaj gönderilemez
-- Sade ve şık arayüz (TailwindCSS kullanılarak)
+- Kullanıcı hedef ve aktivitelerini kaydederek mentörün kişiye özel davranmasını sağlar
+- Planlama modülleri ile kişinin planlama yapmasına yardımcı olur.
+- Mentörlük & planlama süreçlerini birleştirmeyi amaçlar.
+- Kişinin gelişimini izlemesine yardımcı olur.
 
 ## 🧠 Kullanılan Teknolojiler
 
@@ -17,5 +16,3 @@
 - **Backend:** Node.js, Express.js
 - **Veritabanı:** MongoDB (Mongoose ile)
 - **API:** Google Gemini (via `generativelanguage.googleapis.com`)
-
-## 📁 Proje Yapısı
